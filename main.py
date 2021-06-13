@@ -4,11 +4,14 @@ import pyautogui
 import time
 import telegram
 import dotenv
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultVideo, InputTextMessageContent, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import CommandHandler, MessageHandler, Updater, Filters, CallbackQueryHandler, InlineQueryHandler, ChosenInlineResultHandler
-from telegram.error import NetworkError, Unauthorized
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import CommandHandler, MessageHandler, Updater, Filters, CallbackQueryHandler
+from dotenv import dotenv_values
 
-token = 
+
+
+config = dotenv_values(".env")
+token = config['SECRET_KEY']
 updater = Updater(token=token, use_context=True)
 
 
