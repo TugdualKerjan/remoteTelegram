@@ -9,7 +9,7 @@ from telegram.ext import CommandHandler, MessageHandler, Updater, Filters, Callb
 
 #after obtaining your token from https://telegram.me/botfather,
 #paste it right here
-token = "secret_here"
+token = "1963362841:AAGwS3j0pC9vnfXHoUM-HZUGg0o19Yk0k6M"
 updater = Updater(token=token, use_context=True)
 
 
@@ -17,6 +17,8 @@ def main():
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler('start', start))
+    dispatcher.add_handler(CommandHandler('exit', kill))
+
     dispatcher.add_handler(CallbackQueryHandler(callback_handler))
     print('Running!')
 
@@ -41,8 +43,14 @@ reply_keyboard = InlineKeyboardMarkup([
      InlineKeyboardButton("▶️", None, "right")],
     [InlineKeyboardButton("⏯️", None, "space")]])
 
+def kill(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text="""Closing bot.""",
+                             reply_markup=None
+                             )
+    exit()
+
 def start(update, context):
-    print("A")
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text="""Hey! Press any buttons to simulate a keyboard on your computer running this program!""",
                              reply_markup=reply_keyboard
