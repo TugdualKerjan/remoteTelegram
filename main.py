@@ -9,12 +9,13 @@ from telegram.ext import CommandHandler, MessageHandler, Updater, Filters, Callb
 
 #after obtaining your token from https://telegram.me/botfather,
 #paste it right here
-token = "1963362841:AAGwS3j0pC9vnfXHoUM-HZUGg0o19Yk0k6M"
+token = "secret_here"
 updater = Updater(token=token, use_context=True)
 
 
 def main():
     dispatcher = updater.dispatcher
+    dispatcher.add_handler(CommandHandler('help', help))
 
     dispatcher.add_handler(CommandHandler('start', start))
     dispatcher.add_handler(CommandHandler('exit', kill))
@@ -49,10 +50,15 @@ def kill(update, context):
                              reply_markup=None
                              )
     exit()
-
+def help(update, context):
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text="/exit to close the bot,\n/start to start the remote control fun",
+                             reply_markup=None
+                             )
+    exit()
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
-                             text="""Hey! Press any buttons to simulate a keyboard on your computer running this program!""",
+                             text="Hey! Press any buttons to simulate a keyboard on your computer running this program!\n /help \n exit",
                              reply_markup=reply_keyboard
                              )
 
