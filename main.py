@@ -3,15 +3,13 @@
 import pyautogui
 import time
 import telegram
-import dotenv
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CommandHandler, MessageHandler, Updater, Filters, CallbackQueryHandler
-from dotenv import dotenv_values
 
 
-
-config = dotenv_values(".env")
-token = config['SECRET_KEY']
+#after obtaining your token from https://telegram.me/botfather,
+#paste it right here
+token = "secret_here"
 updater = Updater(token=token, use_context=True)
 
 
